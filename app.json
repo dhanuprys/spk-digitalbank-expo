@@ -15,6 +15,17 @@
       ]
     ],
     "name": "spk-simkatmawa-expo",
-    "slug": "spk-simkatmawa-expo"
+    "slug": "spk-simkatmawa-expo",
+    "extra": {
+      "router": {
+        "origin": "https://n"
+      },
+      "eas": {
+        "projectId": "1ee27a87-c69d-4d18-b37d-3840f52821ea"
+      }
+    },
+    "android": {
+      "package": "com.dhanuprys.spksimkatmawa"
+    }
   }
 }
