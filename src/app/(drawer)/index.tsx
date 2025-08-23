@@ -10,7 +10,7 @@ export default function Page() {
   return (
     <View className="flex-1 bg-white">
       {/* Header Section */}
-      <View className="px-6 pt-12 pb-8">
+      <View className="px-6 py-8">
         <Text className="text-2xl font-bold text-gray-900 mb-1">SPK Simkatmawa</Text>
         <Text className="text-gray-500 text-sm">
           Sistem Pendukung Keputusan

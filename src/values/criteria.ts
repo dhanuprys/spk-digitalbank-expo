@@ -104,7 +104,7 @@ export const initialValuesManual: Criteria = {
     // ========== Query/Result Parameters ==========
 
     limit: 10,
-    ascending: true,
+    ascending: false,
 }
 
 export const initialValuesMagiq: Criteria = {
@@ -210,5 +210,5 @@ export const initialValuesMagiq: Criteria = {
     // ========== Query/Result Parameters ==========
 
     limit: 10,
-    ascending: true,
+    ascending: false,
 }

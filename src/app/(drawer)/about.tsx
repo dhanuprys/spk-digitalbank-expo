@@ -15,7 +15,7 @@ export default function AboutScreen() {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-4 pt-4">
+      <ScrollView className="flex-1 px-4">
         {/* App Description */}
         <View className="bg-blue-50 rounded-lg p-4 mb-4">
           <View className="flex-row items-center gap-x-3 mb-3">
