@@ -32,31 +32,36 @@ function CriteriaCard({ name, title }: CriteriaCardProps) {
     const isMax = criteria[name + '_max'];
 
     return (
-        <View className="p-4 bg-blue-50 rounded-lg flex-row items-center justify-between">
-            <Text className="font-semibold text-sm" numberOfLines={2}>{title}</Text>
-            <View className="flex-row items-center gap-x-4">
-                <TouchableOpacity onPress={() => setMax(name, !isMax) }>
-                    <View className="flex-row items-center">
-                        {
-                            isMax
-                                ? <>
-                                    <Text
-                                        className="font-bold">MAX</Text>
-                                    <AntDesign name="arrowup" size={20} color="black" />
-                                </>
-                                : <>
-                                    <Text
-                                        className="font-bold">MIN</Text>
-                                    <AntDesign name="arrowdown" size={20} color="black" />
-                                </>
-                        }
-                    </View>
-                </TouchableOpacity>
-                <TextInput
-                    keyboardType="number-pad"
-                    value={String(criteria[name + '_value'])}
-                    onChange={(e) => setValue(name, parseInt(e.nativeEvent.text) || 0)}
-                    className="border rounded-lg w-20 text-center bg-gray-100" />
+        <View className="pr-1 rounded-xl flex-row gap-x-3 items-center border bg-white border-gray-200 shadow-sm">
+            <View className="flex-1 flex-row items-center justify-between gap-x-4 p-4">
+                <Text className="flex-1 font-medium leading-5 text-gray-800 text-base mr-4" numberOfLines={2}>
+                    {title}
+                </Text>
+                <View className="flex-row items-center gap-x-4 flex-shrink-0">
+                    <TouchableOpacity onPress={() => setMax(name, !isMax)}>
+                        <View className={`px-4 py-2.5 rounded-xl flex-row items-center gap-x-2.5 border ${
+                            isMax 
+                                ? 'bg-red-50 border-red-200' 
+                                : 'bg-green-50 border-green-200'
+                        }`}>
+                            <AntDesign 
+                                name={isMax ? "arrowup" : "arrowdown"} 
+                                size={16} 
+                                color={isMax ? "#DC2626" : "#059669"} 
+                            />
+                            <Text className={`font-semibold text-xs tracking-wide ${
+                                isMax ? 'text-red-800' : 'text-green-800'
+                            }`}>
+                                {isMax ? 'MAX' : 'MIN'}
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TextInput
+                        keyboardType="number-pad"
+                        value={String(criteria[name + '_value'] || 0)}
+                        onChangeText={(text) => setValue(name, parseInt(text) || 0)}
+                        className="border border-gray-300 rounded-lg w-20 text-center bg-gray-50 text-gray-800 font-medium" />
+                </View>
             </View>
         </View>
     );

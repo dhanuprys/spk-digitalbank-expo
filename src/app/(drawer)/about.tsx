@@ -1,99 +1,152 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import DraggableFlatList, {
-    NestableDraggableFlatList,
-    NestableScrollContainer,
-    RenderItemParams,
-  ScaleDecorator,
-} from "react-native-draggable-flatlist";
-import { Header } from "react-native/Libraries/NewAppScreen";
-
-const NUM_ITEMS = 10;
-function getColor(i: number) {
-  const multiplier = 255 / (NUM_ITEMS - 1);
-  const colorVal = i * multiplier;
-  return `rgb(${colorVal}, ${Math.abs(128 - colorVal)}, ${255 - colorVal})`;
-}
-
-type Item = {
-  key: string;
-  label: string;
-  height: number;
-  width: number;
-  backgroundColor: string;
-};
-
-const initialData: Item[] = [...Array(NUM_ITEMS)].map((d, index) => {
-  const backgroundColor = getColor(index);
-  return {
-    key: `item-${index}`,
-    label: String(index) + "",
-    height: 100,
-    width: 60 + Math.random() * 40,
-    backgroundColor,
-  };
-});
+import { ScrollView, Text, View, Linking, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AntDesign from '@expo/vector-icons/AntDesign';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 
 export default function AboutScreen() {
-  const [data1, setData1] = useState(initialData);
-  const [data2, setData2] = useState(initialData);
-  const [data3, setData3] = useState(initialData);
+  const handleContactPress = () => {
+    Linking.openURL('mailto:support@spk-simkatmawa.com');
+  };
 
-  const renderItem = ({ item, drag, isActive }: RenderItemParams<Item>) => {
-    return (
-      <ScaleDecorator>
-        <TouchableOpacity
-          onLongPress={drag}
-          disabled={isActive}
-          style={[
-            styles.rowItem,
-            { backgroundColor: isActive ? "red" : item.backgroundColor },
-          ]}
-        >
-          <Text style={styles.text}>{item.label}</Text>
-        </TouchableOpacity>
-      </ScaleDecorator>
-    );
+  const handleWebsitePress = () => {
+    Linking.openURL('https://spk-simkatmawa.com');
   };
 
   return (
-    <NestableScrollContainer>
-      <Text>Header 1</Text>
-      <NestableDraggableFlatList
-        data={data1}
-        renderItem={renderItem}
-        keyExtractor={s => s.key}
-        onDragEnd={({ data }) => setData1(data)}
-      />
-      <Text>Header 1</Text>
-      <NestableDraggableFlatList
-        data={data2}
-        renderItem={renderItem}
-        keyExtractor={s => s.key}
-        onDragEnd={({ data }) => setData2(data)}
-      />
-      <Text>Header 1</Text>
-      <NestableDraggableFlatList
-        data={data3}
-        renderItem={renderItem}
-        keyExtractor={s => s.key}
-        onDragEnd={({ data }) => setData3(data)}
-      />
-    </NestableScrollContainer>
-  )
-}
+    <SafeAreaView className="flex-1 bg-white">
+      <ScrollView className="flex-1 px-4 pt-4">
+        {/* App Description */}
+        <View className="bg-blue-50 rounded-lg p-4 mb-4">
+          <View className="flex-row items-center gap-x-3 mb-3">
+            <View className="p-2 bg-blue-500 rounded-lg">
+              <FontAwesome6 name="wand-magic-sparkles" size={20} color="white" />
+            </View>
+            <View className="flex-1">
+              <Text className="text-lg font-bold text-gray-800">SPK Simkatmawa</Text>
+              <Text className="text-gray-600 text-sm">Sistem Pendukung Keputusan</Text>
+            </View>
+          </View>
+          <Text className="text-gray-700 text-sm leading-5">
+            Aplikasi untuk seleksi mahasiswa berprestasi menggunakan metode MAGIQ dan Manual 
+            untuk pengambilan keputusan yang lebih akurat dan objektif.
+          </Text>
+        </View>
 
-const styles = StyleSheet.create({
-  rowItem: {
-    height: 100,
-    width: 100,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-});
+        {/* Features */}
+        <View className="mb-4">
+          <Text className="text-base font-semibold text-gray-800 mb-3 px-1">Fitur Utama</Text>
+          <View className="space-y-2">
+            <View className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="p-1.5 bg-purple-500 rounded-md">
+                <MaterialCommunityIcons name="video-input-component" size={16} color="white" />
+              </View>
+              <View className="flex-1">
+                <Text className="font-medium text-gray-800 text-sm">Metode MAGIQ</Text>
+                <Text className="text-gray-600 text-xs">Perhitungan otomatis berdasarkan urutan</Text>
+              </View>
+            </View>
+            
+            <View className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="p-1.5 bg-red-500 rounded-md">
+                <MaterialCommunityIcons name="hand-pointing-up" size={16} color="white" />
+              </View>
+              <View className="flex-1">
+                <Text className="font-medium text-gray-800 text-sm">Metode Manual</Text>
+                <Text className="text-gray-600 text-xs">Input nilai langsung untuk setiap kriteria</Text>
+              </View>
+            </View>
+            
+            <View className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="p-1.5 bg-green-500 rounded-md">
+                <MaterialCommunityIcons name="chart-line" size={16} color="white" />
+              </View>
+              <View className="flex-1">
+                <Text className="font-medium text-gray-800 text-sm">Analisis Hasil</Text>
+                <Text className="text-gray-600 text-xs">Grafik dan tabel untuk evaluasi</Text>
+              </View>
+            </View>
+            
+            <View className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="p-1.5 bg-yellow-500 rounded-md">
+                <MaterialCommunityIcons name="drag" size={16} color="white" />
+              </View>
+              <View className="flex-1">
+                <Text className="font-medium text-gray-800 text-sm">Drag & Drop</Text>
+                <Text className="text-gray-600 text-xs">Pengaturan urutan kriteria yang mudah</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        {/* How It Works */}
+        <View className="mb-4">
+          <Text className="text-base font-semibold text-gray-800 mb-3 px-1">Cara Kerja</Text>
+          <View className="space-y-2">
+            <View className="flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5">
+                <Text className="text-white text-xs font-bold">1</Text>
+              </View>
+              <Text className="flex-1 text-gray-700 text-sm">Pilih metode perhitungan (MAGIQ atau Manual)</Text>
+            </View>
+            
+            <View className="flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5">
+                <Text className="text-white text-xs font-bold">2</Text>
+              </View>
+              <Text className="flex-1 text-gray-700 text-sm">Atur kriteria dan nilai sesuai kebutuhan</Text>
+            </View>
+            
+            <View className="flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5">
+                <Text className="text-white text-xs font-bold">3</Text>
+              </View>
+              <Text className="flex-1 text-gray-700 text-sm">Sistem menghitung dan memberikan rekomendasi</Text>
+            </View>
+            
+            <View className="flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg">
+              <View className="w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5">
+                <Text className="text-white text-xs font-bold">4</Text>
+              </View>
+              <Text className="flex-1 text-gray-700 text-sm">Lihat hasil dalam grafik atau tabel</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Contact & Support */}
+        <View className="mb-4">
+          <Text className="text-base font-semibold text-gray-800 mb-3 px-1">Kontak & Dukungan</Text>
+          
+          <Pressable 
+            className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg mb-2"
+            onPress={handleContactPress}
+          >
+            <AntDesign name="mail" size={16} color="#6B7280" />
+            <Text className="text-gray-700 text-sm">support@spk-simkatmawa.com</Text>
+            <AntDesign name="arrowright" size={14} color="#6B7280" className="ml-auto" />
+          </Pressable>
+          
+          <Pressable 
+            className="flex-row items-center gap-x-3 p-3 bg-gray-50 rounded-lg"
+            onPress={handleWebsitePress}
+          >
+            <AntDesign name="link" size={16} color="#6B7280" />
+            <Text className="text-gray-700 text-sm">www.spk-simkatmawa.com</Text>
+            <AntDesign name="arrowright" size={14} color="#6B7280" className="ml-auto" />
+          </Pressable>
+        </View>
+
+        {/* Footer */}
+        <View className="bg-gray-50 rounded-lg p-4 mb-4">
+          <Text className="text-center text-gray-600 text-xs leading-4 mb-2">
+            SPK Simkatmawa dikembangkan untuk membantu institusi pendidikan 
+            dalam proses seleksi mahasiswa berprestasi dengan lebih objektif dan efisien.
+          </Text>
+          <Text className="text-center text-gray-500 text-xs">
+            © 2024 SPK Simkatmawa. All rights reserved.
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

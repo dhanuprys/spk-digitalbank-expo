@@ -1,11 +1,11 @@
 import { Pressable, Text, TouchableOpacity, View } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import useCriteriaStore, { Criteria } from "@/states/criteria-store";
-import DraggableFlatList, { NestableDraggableFlatList, RenderItemParams } from "react-native-draggable-flatlist";
+import useCriteriaStore from "@/states/criteria-store";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import { useCallback, useState } from "react";
+import { useCallback, useMemo } from "react";
 import { calculateMagiq } from "@/utils/calculate-magiq";
 import DragList, {DragListRenderItemInfo} from 'react-native-draglist';
+import { Criteria } from "@/types/criteria";
 
 interface CriteriaGroupProps {
     items: {
@@ -15,9 +15,32 @@ interface CriteriaGroupProps {
 }
 
 export default function CriteriaGroup({ items }: CriteriaGroupProps) {
-    const [orderedItems, setOrderedItems] = useState(items);
-    const bulkSetValues = useCriteriaStore((state) => state.bulkSetValues);
-
+    const { criteria, bulkSetValues } = useCriteriaStore();
+    
+    // Create ordered items based on current store values
+    const orderedItems = useMemo(() => {
+        // Create a map of item names to their current values
+        const itemValues = new Map<string, number>();
+        
+        items.forEach((item, index) => {
+            const valueKey = item.name + '_value' as keyof Criteria;
+            const currentValue = criteria[valueKey];
+            
+            if (typeof currentValue === 'number') {
+                itemValues.set(item.name, currentValue);
+            } else {
+                // If no value exists, calculate the default MAGIQ value
+                itemValues.set(item.name, calculateMagiq(items.length, index));
+            }
+        });
+        
+        // Sort items by their values (descending order - highest value first)
+        return [...items].sort((a, b) => {
+            const valueA = itemValues.get(a.name) || 0;
+            const valueB = itemValues.get(b.name) || 0;
+            return valueB - valueA;
+        });
+    }, [items, criteria]);
 
     const renderItem = useCallback((info: DragListRenderItemInfo<{ name: string; title: string }>) => {
         const {item, onDragStart, onDragEnd, isActive} = info;
@@ -37,18 +60,16 @@ export default function CriteriaGroup({ items }: CriteriaGroupProps) {
     }, []);
 
     const onReordered = useCallback(async (fromIndex: number, toIndex: number) => {
-        const copy = [...orderedItems]; // Don't modify react OrderedItems in-place
-        const [removed] = copy.splice(fromIndex, 1); // Destructure to get the actual item
-    
-        copy.splice(toIndex, 0, removed); // Insert the actual item at the new position
-        setOrderedItems(copy);
+        const copy = [...orderedItems];
+        const [removed] = copy.splice(fromIndex, 1);
+        copy.splice(toIndex, 0, removed);
 
+        // Update the store with new MAGIQ values based on the new order
         const orderedCriteria: { [key in keyof Criteria]: number } = {} as { [key in keyof Criteria]: number };
-        let index = 0;
-        for (const item of copy) {
+        
+        copy.forEach((item, index) => {
             orderedCriteria[item.name + '_value' as keyof Criteria] = calculateMagiq(copy.length, index);
-            index++;
-        }
+        });
 
         bulkSetValues(orderedCriteria);
     }, [bulkSetValues, orderedItems]);
@@ -77,32 +98,50 @@ function CriteriaCard({ name, title, onDragStart, onDragEnd, isActive }: Criteri
     const isMax = criteria[name + '_max'];
 
     return (
-        <View className={`pr-4 rounded-lg flex-row gap-x-2 items-center ${isActive ? 'bg-blue-200' : 'bg-blue-50'}`}>
+        <View className={`pr-1 rounded-xl flex-row gap-x-3 items-center border ${
+            isActive 
+                ? 'bg-blue-100 border-blue-300 shadow-md'
+                : 'bg-white border-gray-200 shadow-sm'
+        }`}>
             <Pressable
-                className={`p-4 rounded-lg ${isActive ? 'bg-blue-200' : 'bg-blue-50'}`}
+                className={`p-4 rounded-lg ${isActive ? 'bg-blue-200' : 'bg-gray-50'}`}
                 onPressIn={onDragStart}
                 onPressOut={onDragEnd}
-                style={{ transform: [{ scaleY: isActive ? 1.4 : 1 }] }}>
-                <MaterialCommunityIcons name="drag" size={24} color="black" />
+            >
+                <MaterialCommunityIcons 
+                    name="drag" 
+                    size={20} 
+                    color={isActive ? "#1E40AF" : "#6B7280"} 
+                />
             </Pressable>
-            <View className="flex-1 flex-row justify-between gap-x-4">
-                <Text className={`font-semibold ${!isActive ? 'text-sm' : ''}`} numberOfLines={2}>{title}</Text>
-                {!isActive && <View className="flex-row items-center gap-x-4">
+            <View className="flex-1 flex-row items-center justify-between gap-x-4">
+                <Text 
+                    className={`flex-1 font-medium leading-5 mr-4 ${
+                        isActive 
+                            ? 'text-blue-900 text-base' 
+                            : 'text-gray-800 text-base'
+                    }`} 
+                    numberOfLines={2}
+                >
+                    {title}
+                </Text>
+                {!isActive && <View className="flex-row items-center gap-x-3 flex-shrink-0">
                     <TouchableOpacity onPress={() => setMax(name, !isMax)}>
-                        <View className="flex-row items-center">
-                            {
-                                isMax
-                                    ? <>
-                                        <Text
-                                            className="font-bold">MAX</Text>
-                                        <AntDesign name="arrowup" size={20} color="black" />
-                                    </>
-                                    : <>
-                                        <Text
-                                            className="font-bold">MIN</Text>
-                                        <AntDesign name="arrowdown" size={20} color="black" />
-                                    </>
-                            }
+                        <View className={`px-4 py-2.5 rounded-xl flex-row items-center gap-x-2.5 border ${
+                            isMax 
+                                ? 'bg-red-50 border-red-200' 
+                                : 'bg-green-50 border-green-200'
+                        }`}>
+                            <AntDesign 
+                                name={isMax ? "arrowup" : "arrowdown"} 
+                                size={16} 
+                                color={isMax ? "#DC2626" : "#059669"} 
+                            />
+                            <Text className={`font-semibold text-xs tracking-wide ${
+                                isMax ? 'text-red-800' : 'text-green-800'
+                            }`}>
+                                {isMax ? 'MAX' : 'MIN'}
+                            </Text>
                         </View>
                     </TouchableOpacity>
                 </View>}
