@@ -1,7 +1,9 @@
 import SharedHeader from "@/components/shared/header";
 import { useRouter } from "expo-router";
 import { useCallback, useEffect, useState, useRef, useMemo } from "react";
-import { SafeAreaView, View, Text, ScrollView, Animated, TouchableOpacity } from "react-native";
+import { SafeAreaView, View, Text, ScrollView, Animated, TouchableOpacity, Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import AntDesign from '@expo/vector-icons/AntDesign';
 import useCriteriaStore from "@/states/criteria-store";
 import { CalculationService, CalculationResult } from "@/services/calculation-service";
 
@@ -37,6 +39,13 @@ export default function ResultScreen() {
 
             const data = await CalculationService.calculateResults(criteria);
             setResults(data);
+            
+            // Store results in AsyncStorage
+            try {
+                await AsyncStorage.setItem('last_recommendations', JSON.stringify(data));
+            } catch (storageError) {
+                console.warn('Failed to save results to storage:', storageError);
+            }
             
             animatedValues.current = data.map(() => new Animated.Value(0));
             
@@ -299,6 +308,22 @@ export default function ResultScreen() {
                 />
             </View>
             {renderContent()}
+            
+            {/* Sticky Bottom Button */}
+            <View className="px-6 py-6 bg-white border-t border-gray-100">
+                <Pressable onPress={() => router.push('/')}>
+                    <View className="bg-blue-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md">
+                        <View className="bg-blue-400 p-2 rounded-full">
+                            <AntDesign name="home" size={15} color="white" />
+                        </View>
+                        <Text className="text-white font-semibold text-base">Kembali ke Halaman Utama</Text>
+                    </View>
+                </Pressable>
+                
+                <Text className="text-center text-gray-500 text-sm mt-4 px-4 leading-5">
+                    Kembali ke halaman utama untuk memulai perhitungan baru atau melihat rekomendasi terakhir
+                </Text>
+            </View>
         </SafeAreaView>
     );
 }

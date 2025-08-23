@@ -6,11 +6,24 @@
     "web": {
       "output": "static"
     },
+    "icon": "./assets/images/icon.png",
     "plugins": [
       [
         "expo-router",
         {
           "origin": "https://n"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#ffffff",
+          "image": "./assets/images/splash-icon.png",
+          "dark": {
+            "image": "./assets/images/splash-icon.png",
+            "backgroundColor": "#ffffff"
+          },
+          "imageWidth": 200
         }
       ]
     ],
