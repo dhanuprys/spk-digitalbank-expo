@@ -27,7 +27,7 @@ function ErrorBoundary({ children }: { children: React.ReactNode }) {
 export default function Layout() {
   return (
     <ErrorBoundary>
-      <GestureHandlerRootView style={{ flex: 1}}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
         <Drawer
           screenOptions={{
             drawerStyle: {
@@ -39,22 +39,24 @@ export default function Layout() {
           }}
         >
           <Drawer.Screen
-            name="index"
+            name='index'
             options={{
-              drawerIcon: ({ color }) => 
-                <Feather name="home" size={24} color={color} />,
+              drawerIcon: ({ color }) => (
+                <Feather name='home' size={24} color={color} />
+              ),
               drawerLabel: 'Home',
-              title: 'SPK Simkatmawa'
-            }} 
+              title: 'SPK Simkatmawa',
+            }}
           />
           <Drawer.Screen
-            name="about"
+            name='about'
             options={{
-              drawerIcon: ({ color }) =>
-                  <Feather name="info" size={24} color={color} />,
+              drawerIcon: ({ color }) => (
+                <Feather name='info' size={24} color={color} />
+              ),
               drawerLabel: 'Tentang Kami',
-              title: 'Tentang Kami'
-            }} 
+              title: 'Tentang Kami',
+            }}
           />
         </Drawer>
       </GestureHandlerRootView>

@@ -5,6 +5,7 @@ This application uses environment variables for configuration. Create a `.env` f
 ## Required Environment Variables
 
 ### API Configuration
+
 ```bash
 # Base URL for API requests
 EXPO_PUBLIC_API_BASE_URL=https://api.example.com
@@ -13,11 +14,13 @@ EXPO_PUBLIC_API_BASE_URL=https://api.example.com
 ## How to Set Up
 
 1. **Create a `.env` file** in your project root:
+
 ```bash
 touch .env
 ```
 
 2. **Add your configuration**:
+
 ```bash
 EXPO_PUBLIC_API_BASE_URL=https://your-api-domain.com
 ```
@@ -34,16 +37,19 @@ EXPO_PUBLIC_API_BASE_URL=https://your-api-domain.com
 ## Example Configurations
 
 ### Development
+
 ```bash
 EXPO_PUBLIC_API_BASE_URL=http://localhost:3000
 ```
 
 ### Staging
+
 ```bash
 EXPO_PUBLIC_API_BASE_URL=https://staging-api.example.com
 ```
 
 ### Production
+
 ```bash
 EXPO_PUBLIC_API_BASE_URL=https://api.example.com
 ```
