@@ -1,5 +1,4 @@
 import { ScrollView, Text, View, Linking, Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
@@ -14,8 +13,8 @@ export default function AboutScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
-      <ScrollView className="flex-1 px-4">
+    <View className="flex-1 bg-white">
+      <ScrollView className="flex-1 px-6 pt-8">
         {/* App Description */}
         <View className="bg-blue-50 rounded-lg p-4 mb-4">
           <View className="flex-row items-center gap-x-3 mb-3">
@@ -147,6 +146,6 @@ export default function AboutScreen() {
           </Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
