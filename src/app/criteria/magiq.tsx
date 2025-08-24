@@ -1,17 +1,10 @@
-import {
-  Pressable,
-  ScrollView,
-  Text,
-  TouchableHighlight,
-  View,
-  FlatList,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import { useCallback, useMemo } from 'react';
-import { useRouter } from 'expo-router';
 import CriteriaGroup from '@/components/criteria/magiq/criteria-group';
 import SharedHeader from '@/components/shared/header';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useRouter } from 'expo-router';
+import { useCallback, useMemo } from 'react';
+import { FlatList, Pressable, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface SectionData {
   id: string;
@@ -97,25 +90,37 @@ export default function CriteriaMagiqScreen() {
     []
   );
 
-  const renderItem = useCallback(({ item }: { item: SectionData }) => {
-    if (item.type === 'header') {
-      return (
-        <Text className='font-semibold text-xl mb-4 text-gray-800 px-6'>
-          {item.title}
-        </Text>
-      );
-    }
+  const renderItem = useCallback(
+    ({ item, index }: { item: SectionData; index: number }) => {
+      if (item.type === 'header') {
+        return (
+          <Text className='font-semibold text-xl mt-6 mb-4 text-gray-800 px-6'>
+            {item.title}
+          </Text>
+        );
+      }
 
-    if (item.type === 'criteria' && item.items) {
-      return (
-        <View className='px-6'>
-          <CriteriaGroup items={item.items} />
-        </View>
-      );
-    }
+      if (item.type === 'criteria' && item.items) {
+        return (
+          <View>
+            <View className='px-6'>
+              <CriteriaGroup items={item.items} />
+            </View>
+            {/* Add separator if next item is also criteria (same level) */}
+            {index < sections.length - 1 &&
+              sections[index + 1]?.type === 'criteria' && (
+                <View className='mx-6 mt-4 mb-2'>
+                  <View className='h-px bg-gray-200' />
+                </View>
+              )}
+          </View>
+        );
+      }
 
-    return null;
-  }, []);
+      return null;
+    },
+    [sections]
+  );
 
   return (
     <SafeAreaView className='flex-1 bg-gray-50'>
@@ -129,7 +134,8 @@ export default function CriteriaMagiqScreen() {
         data={sections}
         keyExtractor={item => item.id}
         renderItem={renderItem}
-        className='flex-1 pt-4 pb-32'
+        className='flex-1'
+        ListFooterComponent={() => <View className='h-32' />}
         showsVerticalScrollIndicator={false}
       />
 

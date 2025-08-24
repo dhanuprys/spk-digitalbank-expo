@@ -1,22 +1,22 @@
 import SharedHeader from '@/components/shared/header';
-import { useRouter } from 'expo-router';
-import { useCallback, useEffect, useState, useRef, useMemo } from 'react';
 import {
-  SafeAreaView,
-  View,
-  Text,
-  ScrollView,
-  Animated,
-  TouchableOpacity,
-  Pressable,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import useCriteriaStore from '@/states/criteria-store';
-import {
-  CalculationService,
   CalculationResult,
+  CalculationService,
 } from '@/services/calculation-service';
+import useCriteriaStore from '@/states/criteria-store';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Animated,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export default function ResultScreen() {
   const router = useRouter();
@@ -334,13 +334,12 @@ export default function ResultScreen() {
 
   return (
     <SafeAreaView className='flex-1 bg-gray-50'>
-      <View className='pt-4'>
-        <SharedHeader
-          title='Hasil Rekomendasi'
-          subtitle='Berdasarkan kriteria yang telah dipilih'
-          onBackPress={handleBackPress}
-        />
-      </View>
+      <SharedHeader
+        title='Hasil Rekomendasi'
+        subtitle='Berdasarkan kriteria yang telah dipilih'
+        onBackPress={handleBackPress}
+      />
+
       {renderContent()}
 
       {/* Sticky Bottom Button */}

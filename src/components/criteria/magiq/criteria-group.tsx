@@ -1,11 +1,11 @@
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import useCriteriaStore from '@/states/criteria-store';
+import { Criteria } from '@/types/criteria';
+import { calculateMagiq } from '@/utils/calculate-magiq';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { useCallback, useMemo } from 'react';
-import { calculateMagiq } from '@/utils/calculate-magiq';
+import { Pressable, Text, TouchableOpacity, View } from 'react-native';
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist';
-import { Criteria } from '@/types/criteria';
 
 interface CriteriaGroupProps {
   items: {
@@ -47,7 +47,7 @@ export default function CriteriaGroup({ items }: CriteriaGroupProps) {
       const { item, onDragStart, onDragEnd, isActive } = info;
 
       return (
-        <View className='gap-y-2 pb-2'>
+        <View className='pt-2'>
           <CriteriaCard
             key={item.name}
             name={item.name}
@@ -87,7 +87,6 @@ export default function CriteriaGroup({ items }: CriteriaGroupProps) {
     <DragList
       data={orderedItems}
       keyExtractor={s => s.name}
-      className='pb-6'
       onReordered={onReordered}
       renderItem={renderItem}
     />
