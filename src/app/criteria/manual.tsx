@@ -1,17 +1,15 @@
+import CriteriaGroup from '@/components/criteria/manual/criteria-group';
+import SharedHeader from '@/components/shared/header';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useRouter } from 'expo-router';
+import { useCallback, useMemo } from 'react';
 import {
-  Pressable,
-  ScrollView,
-  Text,
-  TouchableHighlight,
-  View,
   FlatList,
+  Pressable,
+  Text,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import CriteriaGroup from '@/components/criteria/manual/criteria-group';
-import { useCallback, useMemo } from 'react';
-import { useRouter } from 'expo-router';
-import SharedHeader from '@/components/shared/header';
 
 interface SectionData {
   id: string;

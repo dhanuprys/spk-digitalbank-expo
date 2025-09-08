@@ -20,7 +20,7 @@ import {
 
 export default function ResultScreen() {
   const router = useRouter();
-  const { criteria, showGraphic, showTable } = useCriteriaStore();
+  const { criteria, template, showGraphic, showTable } = useCriteriaStore();
   const [results, setResults] = useState<CalculationResult[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +51,17 @@ export default function ResultScreen() {
       setLoading(true);
       setError(null);
 
-      const data = await CalculationService.calculateResults(criteria);
+      let data = null;
+
+      if (template) {
+        data = await CalculationService.calculateTemplateResults(
+          criteria,
+          template
+        );
+      } else {
+        data = await CalculationService.calculateResults(criteria);
+      }
+
       setResults(data);
 
       // Store results in AsyncStorage
@@ -229,6 +239,38 @@ export default function ResultScreen() {
     </View>
   );
 
+  const renderTemplateHeader = () => {
+    if (!template) return null;
+
+    return (
+      <View className='px-6 py-4 bg-white border-b border-gray-100'>
+        <View className='flex-row items-center justify-between'>
+          <View className='flex-row items-center gap-x-3 flex-1'>
+            <View className='w-9 h-9 bg-blue-50 rounded-xl items-center justify-center border border-blue-100'>
+              <AntDesign name='filetext1' size={18} color='#2563EB' />
+            </View>
+            <View className='flex-1'>
+              <Text className='text-xs text-gray-400 mb-1 font-medium uppercase tracking-wide'>
+                Template
+              </Text>
+              <Text
+                className='text-base font-semibold text-gray-900'
+                numberOfLines={1}
+              >
+                {template.name}
+              </Text>
+            </View>
+          </View>
+          <View className='bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200'>
+            <Text className='text-xs font-semibold text-emerald-700'>
+              Active
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -305,6 +347,7 @@ export default function ResultScreen() {
 
     return (
       <ScrollView className='flex-1'>
+        {renderTemplateHeader()}
         {renderSortingOptions()}
         {showGraphic && renderGraphView()}
         {showTable && renderTableView()}

@@ -2,7 +2,7 @@ import CriteriaGroup from '@/components/criteria/magiq/criteria-group';
 import SharedHeader from '@/components/shared/header';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { FlatList, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,6 +18,7 @@ interface SectionData {
 
 export default function CriteriaMagiqScreen() {
   const router = useRouter();
+  const [showTips, setShowTips] = useState(true);
 
   const handleBackPress = useCallback(() => {
     router.replace('/');
@@ -129,6 +130,32 @@ export default function CriteriaMagiqScreen() {
         subtitle='Atur urutan kriteria untuk perhitungan MAGIQ'
         onBackPress={handleBackPress}
       />
+
+      {showTips && (
+        <View className='px-6 py-4 bg-white border-b border-gray-100'>
+          <View className='flex-row items-start justify-between mb-2'>
+            <View className='flex-row items-center gap-x-2 flex-1'>
+              <View className='w-6 h-6 bg-blue-50 rounded-lg items-center justify-center'>
+                <AntDesign name='info' size={14} color='#3B82F6' />
+              </View>
+              <Text className='text-sm font-medium text-gray-700'>
+                Tips Penggunaan
+              </Text>
+            </View>
+            <Pressable
+              onPress={() => setShowTips(false)}
+              className='p-1 -mr-1'
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            >
+              <AntDesign name='close' size={16} color='#9CA3AF' />
+            </Pressable>
+          </View>
+          <Text className='text-sm text-gray-600 leading-5'>
+            Drag dan drop kriteria untuk mengatur urutan prioritas. Kriteria di
+            atas memiliki prioritas lebih tinggi.
+          </Text>
+        </View>
+      )}
 
       <FlatList
         data={sections}

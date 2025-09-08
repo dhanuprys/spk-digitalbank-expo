@@ -1,17 +1,11 @@
-import { Link, useRouter } from 'expo-router';
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useState,
-} from 'react';
-import { Pressable, Text, TouchableOpacity, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import useCriteriaStore from '@/states/criteria-store';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import classNames from 'classnames';
-import useCriteriaStore from '@/states/criteria-store';
+import { useRouter } from 'expo-router';
+import React, { FC, useCallback, useEffect, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
 
 interface LastRecommendation {
   id: number;
@@ -51,6 +45,15 @@ export default function Page() {
             description='Metode manual dengan input nilai langsung'
             className='bg-red-50 border border-red-100'
           />
+          <CriteriaButton
+            icon={() => (
+              <MaterialCommunityIcons name='layers' size={24} color='#10B981' />
+            )}
+            type='template'
+            title='TEMPLATE'
+            description='Memilih dengan template yang sudah disediakan'
+            className='bg-green-50 border border-green-100'
+          />
         </View>
 
         {/* Last Recommendations */}
@@ -64,7 +67,7 @@ interface CriteriaButtonProps {
   icon: FC;
   title: string;
   description: string;
-  type: 'manual' | 'magiq';
+  type: 'manual' | 'magiq' | 'template';
   className?: string;
 }
 

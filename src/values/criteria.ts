@@ -99,7 +99,7 @@ export const initialValuesManual: Criteria = {
 
   // Bahasa Inggris (English Language)
   l1_cg1_c_value: 10,
-  l1_cg1_c_max: true,
+  l1_cg1_c_max: false,
 
   // ========== Query/Result Parameters ==========
 
@@ -205,7 +205,7 @@ export const initialValuesMagiq: Criteria = {
 
   // Bahasa Inggris (English Language)
   l1_cg1_c_value: calculateMagiq(3, 2),
-  l1_cg1_c_max: true,
+  l1_cg1_c_max: false,
 
   // ========== Query/Result Parameters ==========
 

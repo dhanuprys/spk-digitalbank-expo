@@ -1,16 +1,19 @@
 import { Criteria } from '@/types/criteria';
 import { initialValuesMagiq, initialValuesManual } from '@/values/criteria';
 import { create } from 'zustand';
+import { Template } from '../services/calculation-service';
 
 interface CriteriaStore {
   criteria: Criteria;
   showGraphic: boolean;
   showTable: boolean;
+  template: Template | null;
+  setTemplate: (template: Template) => void;
   setCriteria: (criteria: Criteria) => void;
   setMax: (criteriaName: string, isMax: boolean) => void;
   setValue: (criteriaName: string, value: number) => void;
   bulkSetValues: (values: { [key in keyof Criteria]: number }) => void;
-  resetCriteria: (type: 'magiq' | 'manual') => void;
+  resetCriteria: (type: 'magiq' | 'manual' | 'template') => void;
   setShowGraphic: (show: boolean) => void;
   setShowTable: (show: boolean) => void;
   setDisplayFormats: (formats: { grafik: boolean; tabel: boolean }) => void;
@@ -20,6 +23,8 @@ const useCriteriaStore = create<CriteriaStore>(set => ({
   criteria: initialValuesManual,
   showGraphic: true,
   showTable: false,
+  template: null,
+  setTemplate: template => set({ template }),
   setCriteria: criteria => set({ criteria }),
   setMax: (criteriaName, isMax) =>
     set(state => ({
@@ -49,6 +54,7 @@ const useCriteriaStore = create<CriteriaStore>(set => ({
     set(state => ({
       ...state,
       criteria: type === 'manual' ? initialValuesManual : initialValuesMagiq,
+      template: null,
     })),
   setShowGraphic: show => set({ showGraphic: show }),
   setShowTable: show => set({ showTable: show }),
