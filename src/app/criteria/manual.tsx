@@ -3,12 +3,7 @@ import SharedHeader from '@/components/shared/header';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { useRouter } from 'expo-router';
 import { useCallback, useMemo } from 'react';
-import {
-  FlatList,
-  Pressable,
-  Text,
-  View
-} from 'react-native';
+import { FlatList, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface SectionData {
@@ -35,9 +30,9 @@ export default function CriteriaManualScreen() {
         id: 'l1_criteria',
         type: 'criteria',
         items: [
-          { name: 'l1_cg1_a', title: 'Capaian Unggulan' },
-          { name: 'l1_cg1_b', title: 'Gagasan Kreatif' },
-          { name: 'l1_cg1_c', title: 'Bahasa Inggris' },
+          { name: 'l1_cg1_a', title: 'Performa Apps' },
+          { name: 'l1_cg1_b', title: 'Laporan Keuangan' },
+          { name: 'l1_cg1_c', title: 'User Experience' },
         ],
       },
       { id: 'l2', type: 'header', title: 'Level 2' },
@@ -45,50 +40,32 @@ export default function CriteriaManualScreen() {
         id: 'l2_cg1',
         type: 'criteria',
         items: [
-          { name: 'l2_cg1_a', title: 'Kompetisi' },
-          { name: 'l2_cg1_b', title: 'Pengakuan' },
-          { name: 'l2_cg1_c', title: 'Penghargaan' },
-          { name: 'l2_cg1_d', title: 'Karier Organisasi' },
-          { name: 'l2_cg1_e', title: 'Hasil Karya' },
-          { name: 'l2_cg1_f', title: 'Pemberdayaan / Aksi Kemanusiaan' },
-          { name: 'l2_cg1_g', title: 'Kewirausahaan' },
+          { name: 'l2_cg1_a', title: 'Ukuran File' },
+          { name: 'l2_cg1_b', title: 'Total Rating' },
+          { name: 'l2_cg1_c', title: 'User Rated' },
+          { name: 'l2_cg1_d', title: 'Total Install' },
+          { name: 'l2_cg1_e', title: 'Release Date' },
         ],
       },
       {
         id: 'l2_cg2',
         type: 'criteria',
         items: [
-          { name: 'l2_cg2_a', title: 'Naskah GK' },
-          { name: 'l2_cg2_b', title: 'Presentasi GK' },
+          { name: 'l2_cg2_a', title: 'Giro' },
+          { name: 'l2_cg2_b', title: 'Tabungan' },
+          { name: 'l2_cg2_c', title: 'Deposito' },
+          { name: 'l2_cg2_d', title: 'Laba Bersih' },
         ],
       },
       {
         id: 'l2_cg3',
         type: 'criteria',
         items: [
-          { name: 'l2_cg3_a', title: 'Content' },
-          { name: 'l2_cg3_b', title: 'Accuracy' },
-          { name: 'l2_cg3_c', title: 'Fluency' },
-          { name: 'l2_cg3_d', title: 'Pronounciation' },
-          { name: 'l2_cg3_e', title: 'Overall Performance' },
-        ],
-      },
-      { id: 'l3', type: 'header', title: 'Level 3' },
-      {
-        id: 'l3_cg1',
-        type: 'criteria',
-        items: [
-          { name: 'l3_cg1_a', title: 'Penyajian' },
-          { name: 'l3_cg1_b', title: 'Substansi' },
-          { name: 'l3_cg1_c', title: 'Kualitas' },
-        ],
-      },
-      {
-        id: 'l3_cg2',
-        type: 'criteria',
-        items: [
-          { name: 'l3_cg2_a', title: 'Presentasi' },
-          { name: 'l3_cg2_b', title: 'Tanya Jawab' },
+          { name: 'l2_cg3_a', title: 'Happiness' },
+          { name: 'l2_cg3_b', title: 'Engagement' },
+          { name: 'l2_cg3_c', title: 'Adoption' },
+          { name: 'l2_cg3_d', title: 'Retention' },
+          { name: 'l2_cg3_e', title: 'Task Success' },
         ],
       },
     ],
@@ -133,8 +110,8 @@ export default function CriteriaManualScreen() {
 
       <View className='px-6 py-6 bg-white border-t border-gray-100'>
         <Pressable onPress={() => router.push('/criteria/filter')}>
-          <View className='bg-blue-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
-            <View className='bg-blue-400 p-2 rounded-full'>
+          <View className='bg-indigo-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
+            <View className='bg-indigo-400 p-2 rounded-full'>
               <AntDesign name='arrowright' size={15} color='white' />
             </View>
             <Text className='text-white font-semibold text-base'>

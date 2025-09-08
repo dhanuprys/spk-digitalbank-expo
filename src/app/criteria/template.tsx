@@ -67,7 +67,7 @@ export default function CriteriaMagiqScreen() {
           <View
             className={`rounded-xl p-5 border shadow-sm ${
               isSelected
-                ? 'bg-blue-50 border-blue-300'
+                ? 'bg-indigo-50 border-indigo-300'
                 : 'bg-white border-gray-200'
             }`}
           >
@@ -75,14 +75,14 @@ export default function CriteriaMagiqScreen() {
               <View className='flex-1 mr-3'>
                 <Text
                   className={`text-lg font-semibold mb-1 ${
-                    isSelected ? 'text-blue-900' : 'text-gray-900'
+                    isSelected ? 'text-indigo-900' : 'text-gray-900'
                   }`}
                 >
                   {item.name}
                 </Text>
                 <Text
                   className={`text-sm leading-5 ${
-                    isSelected ? 'text-blue-700' : 'text-gray-600'
+                    isSelected ? 'text-indigo-700' : 'text-gray-600'
                   }`}
                 >
                   {item.description}
@@ -90,21 +90,21 @@ export default function CriteriaMagiqScreen() {
               </View>
               <View
                 className={`p-2 rounded-lg ${
-                  isSelected ? 'bg-blue-100' : 'bg-blue-50'
+                  isSelected ? 'bg-indigo-100' : 'bg-indigo-50'
                 }`}
               >
                 <AntDesign
                   name='filetext1'
                   size={20}
-                  color={isSelected ? '#1E40AF' : '#3B82F6'}
+                  color={isSelected ? '#4338CA' : '#6366F1'}
                 />
               </View>
             </View>
 
             {isSelected && (
-              <View className='flex-row items-center gap-x-2 pt-2 border-t border-blue-200'>
-                <AntDesign name='checkcircle' size={16} color='#1E40AF' />
-                <Text className='text-sm text-blue-800 font-medium'>
+              <View className='flex-row items-center gap-x-2 pt-2 border-t border-indigo-200'>
+                <AntDesign name='checkcircle' size={16} color='#4338CA' />
+                <Text className='text-sm text-indigo-800 font-medium'>
                   Template dipilih
                 </Text>
               </View>
@@ -127,7 +127,7 @@ export default function CriteriaMagiqScreen() {
       {loading ? (
         <View className='flex-1 justify-center items-center'>
           <View className='bg-white rounded-xl p-8 items-center shadow-sm'>
-            <View className='w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mb-4' />
+            <View className='w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin mb-4' />
             <Text className='text-gray-600 font-medium'>
               Memuat template...
             </Text>
@@ -163,12 +163,12 @@ export default function CriteriaMagiqScreen() {
         >
           <View
             className={`py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md ${
-              template ? 'bg-blue-500' : 'bg-gray-300'
+              template ? 'bg-indigo-500' : 'bg-gray-300'
             }`}
           >
             <View
               className={`p-2 rounded-full ${
-                template ? 'bg-blue-400' : 'bg-gray-400'
+                template ? 'bg-indigo-400' : 'bg-gray-400'
               }`}
             >
               <AntDesign name='arrowright' size={15} color='white' />

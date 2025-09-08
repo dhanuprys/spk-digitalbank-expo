@@ -1,8 +1,7 @@
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Drawer } from 'expo-router/drawer';
 import Feather from '@expo/vector-icons/Feather';
-import { View, Text } from 'react-native';
+import { Drawer } from 'expo-router/drawer';
 import { useEffect } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 function ErrorBoundary({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function Layout() {
               backgroundColor: '#fff',
               width: 280,
             },
-            drawerActiveTintColor: '#3B82F6',
+            drawerActiveTintColor: '#6366F1',
             drawerInactiveTintColor: '#6B7280',
           }}
         >
@@ -45,7 +44,7 @@ export default function Layout() {
                 <Feather name='home' size={24} color={color} />
               ),
               drawerLabel: 'Home',
-              title: 'SPK Simkatmawa',
+              title: 'SPK Digital Bank',
             }}
           />
           <Drawer.Screen

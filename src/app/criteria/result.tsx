@@ -109,7 +109,7 @@ export default function ResultScreen() {
           <View
             className={`w-5 h-5 rounded-full border-2 mr-3 ${
               sortBy === 'ranking'
-                ? 'border-blue-500 bg-blue-500'
+                ? 'border-indigo-500 bg-indigo-500'
                 : 'border-gray-300'
             }`}
           >
@@ -120,7 +120,7 @@ export default function ResultScreen() {
           <Text
             className={`text-base ${
               sortBy === 'ranking'
-                ? 'text-blue-600 font-medium'
+                ? 'text-indigo-600 font-medium'
                 : 'text-gray-600'
             }`}
           >
@@ -135,7 +135,7 @@ export default function ResultScreen() {
           <View
             className={`w-5 h-5 rounded-full border-2 mr-3 ${
               sortBy === 'name'
-                ? 'border-blue-500 bg-blue-500'
+                ? 'border-indigo-500 bg-indigo-500'
                 : 'border-gray-300'
             }`}
           >
@@ -145,7 +145,9 @@ export default function ResultScreen() {
           </View>
           <Text
             className={`text-base ${
-              sortBy === 'name' ? 'text-blue-600 font-medium' : 'text-gray-600'
+              sortBy === 'name'
+                ? 'text-indigo-600 font-medium'
+                : 'text-gray-600'
             }`}
           >
             Urutkan berdasarkan nama
@@ -175,7 +177,7 @@ export default function ResultScreen() {
             </Text>
             <View className='bg-gray-200 rounded-full h-2 overflow-hidden'>
               <Animated.View
-                className='bg-blue-500 h-full rounded-full'
+                className='bg-indigo-500 h-full rounded-full'
                 style={{
                   width:
                     animatedValues.current[originalIndex]?.interpolate({
@@ -211,9 +213,7 @@ export default function ResultScreen() {
             <Text className='font-semibold text-gray-800 text-center'>No</Text>
           </View>
           <View className='flex-1 p-4'>
-            <Text className='font-semibold text-gray-800 text-center'>
-              Nama
-            </Text>
+            <Text className='font-semibold text-gray-800'>Bank</Text>
           </View>
         </View>
 
@@ -246,8 +246,8 @@ export default function ResultScreen() {
       <View className='px-6 py-4 bg-white border-b border-gray-100'>
         <View className='flex-row items-center justify-between'>
           <View className='flex-row items-center gap-x-3 flex-1'>
-            <View className='w-9 h-9 bg-blue-50 rounded-xl items-center justify-center border border-blue-100'>
-              <AntDesign name='filetext1' size={18} color='#2563EB' />
+            <View className='w-9 h-9 bg-indigo-50 rounded-xl items-center justify-center border border-indigo-100'>
+              <AntDesign name='filetext1' size={18} color='#6366F1' />
             </View>
             <View className='flex-1'>
               <Text className='text-xs text-gray-400 mb-1 font-medium uppercase tracking-wide'>
@@ -261,8 +261,8 @@ export default function ResultScreen() {
               </Text>
             </View>
           </View>
-          <View className='bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200'>
-            <Text className='text-xs font-semibold text-emerald-700'>
+          <View className='bg-indigo-50 px-3 py-1.5 rounded-full border border-indigo-200'>
+            <Text className='text-xs font-semibold text-indigo-700'>
               Active
             </Text>
           </View>
@@ -277,7 +277,7 @@ export default function ResultScreen() {
         <View className='flex-1 justify-center items-center px-6'>
           <View className='bg-white rounded-2xl p-8 shadow-sm border border-gray-100 max-w-sm w-full'>
             <View className='items-center'>
-              <View className='w-16 h-16 border-4 border-blue-200 border-t-blue-500 rounded-full animate-spin mb-6' />
+              <View className='w-16 h-16 border-4 border-indigo-200 border-t-indigo-500 rounded-full animate-spin mb-6' />
               <Text className='text-xl font-semibold text-gray-900 text-center mb-2'>
                 Memproses Data
               </Text>
@@ -306,7 +306,7 @@ export default function ResultScreen() {
                 {error}
               </Text>
               <TouchableOpacity
-                className='bg-blue-500 px-6 py-3 rounded-xl'
+                className='bg-indigo-500 px-6 py-3 rounded-xl'
                 onPress={() => {
                   setError(null);
                   setLoading(true);
@@ -356,8 +356,8 @@ export default function ResultScreen() {
           <View className='flex-1 justify-center items-center px-6 py-8'>
             <View className='bg-white rounded-2xl p-8 shadow-sm border border-gray-100 max-w-sm w-full'>
               <View className='items-center'>
-                <View className='w-16 h-16 bg-blue-100 rounded-full items-center justify-center mb-6'>
-                  <Text className='text-3xl text-blue-500'>⚙️</Text>
+                <View className='w-16 h-16 bg-indigo-100 rounded-full items-center justify-center mb-6'>
+                  <Text className='text-3xl text-indigo-500'>⚙️</Text>
                 </View>
                 <Text className='text-xl font-semibold text-gray-900 text-center mb-2'>
                   Pilih Format Tampilan
@@ -388,8 +388,8 @@ export default function ResultScreen() {
       {/* Sticky Bottom Button */}
       <View className='px-6 py-6 bg-white border-t border-gray-100'>
         <Pressable onPress={() => router.push('/')}>
-          <View className='bg-blue-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
-            <View className='bg-blue-400 p-2 rounded-full'>
+          <View className='bg-indigo-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
+            <View className='bg-indigo-400 p-2 rounded-full'>
               <AntDesign name='home' size={15} color='white' />
             </View>
             <Text className='text-white font-semibold text-base'>

@@ -1,24 +1,24 @@
-import { ScrollView, Text, View, Linking, Pressable } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { Linking, Pressable, ScrollView, Text, View } from 'react-native';
 
 export default function AboutScreen() {
   const handleContactPress = () => {
-    Linking.openURL('mailto:support@spk-simkatmawa.com');
+    Linking.openURL('mailto:support@spk-digitalbank.com');
   };
 
   const handleWebsitePress = () => {
-    Linking.openURL('https://spk-simkatmawa.com');
+    Linking.openURL('https://spk-digitalbank.com');
   };
 
   return (
     <View className='flex-1 bg-white'>
       <ScrollView className='flex-1 px-6 pt-8'>
         {/* App Description */}
-        <View className='bg-blue-50 rounded-lg p-4 mb-4'>
+        <View className='bg-indigo-50 rounded-lg p-4 mb-4'>
           <View className='flex-row items-center gap-x-3 mb-3'>
-            <View className='p-2 bg-blue-500 rounded-lg'>
+            <View className='p-2 bg-indigo-500 rounded-lg'>
               <FontAwesome6
                 name='wand-magic-sparkles'
                 size={20}
@@ -27,7 +27,7 @@ export default function AboutScreen() {
             </View>
             <View className='flex-1'>
               <Text className='text-lg font-bold text-gray-800'>
-                SPK Simkatmawa
+                SPK Digital Bank
               </Text>
               <Text className='text-gray-600 text-sm'>
                 Sistem Pendukung Keputusan
@@ -35,7 +35,7 @@ export default function AboutScreen() {
             </View>
           </View>
           <Text className='text-gray-700 text-sm leading-5'>
-            Aplikasi untuk seleksi mahasiswa berprestasi menggunakan metode
+            Aplikasi untuk evaluasi produk digital banking menggunakan metode
             MAGIQ dan Manual untuk pengambilan keputusan yang lebih akurat dan
             objektif.
           </Text>
@@ -124,7 +124,7 @@ export default function AboutScreen() {
           </Text>
           <View className='space-y-2'>
             <View className='flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg'>
-              <View className='w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5'>
+              <View className='w-5 h-5 bg-indigo-500 rounded-full items-center justify-center mt-0.5'>
                 <Text className='text-white text-xs font-bold'>1</Text>
               </View>
               <Text className='flex-1 text-gray-700 text-sm'>
@@ -133,7 +133,7 @@ export default function AboutScreen() {
             </View>
 
             <View className='flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg'>
-              <View className='w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5'>
+              <View className='w-5 h-5 bg-indigo-500 rounded-full items-center justify-center mt-0.5'>
                 <Text className='text-white text-xs font-bold'>2</Text>
               </View>
               <Text className='flex-1 text-gray-700 text-sm'>
@@ -142,7 +142,7 @@ export default function AboutScreen() {
             </View>
 
             <View className='flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg'>
-              <View className='w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5'>
+              <View className='w-5 h-5 bg-indigo-500 rounded-full items-center justify-center mt-0.5'>
                 <Text className='text-white text-xs font-bold'>3</Text>
               </View>
               <Text className='flex-1 text-gray-700 text-sm'>
@@ -151,7 +151,7 @@ export default function AboutScreen() {
             </View>
 
             <View className='flex-row items-start gap-x-3 p-3 bg-gray-50 rounded-lg'>
-              <View className='w-5 h-5 bg-blue-500 rounded-full items-center justify-center mt-0.5'>
+              <View className='w-5 h-5 bg-indigo-500 rounded-full items-center justify-center mt-0.5'>
                 <Text className='text-white text-xs font-bold'>4</Text>
               </View>
               <Text className='flex-1 text-gray-700 text-sm'>
@@ -173,7 +173,7 @@ export default function AboutScreen() {
           >
             <AntDesign name='mail' size={16} color='#6B7280' />
             <Text className='text-gray-700 text-sm'>
-              support@spk-simkatmawa.com
+              support@spk-digitalbank.com
             </Text>
             <AntDesign
               name='arrowright'
@@ -189,7 +189,7 @@ export default function AboutScreen() {
           >
             <AntDesign name='link' size={16} color='#6B7280' />
             <Text className='text-gray-700 text-sm'>
-              www.spk-simkatmawa.com
+              www.spk-digitalbank.com
             </Text>
             <AntDesign
               name='arrowright'
@@ -203,12 +203,12 @@ export default function AboutScreen() {
         {/* Footer */}
         <View className='bg-gray-50 rounded-lg p-4 mb-4'>
           <Text className='text-center text-gray-600 text-xs leading-4 mb-2'>
-            SPK Simkatmawa dikembangkan untuk membantu institusi pendidikan
-            dalam proses seleksi mahasiswa berprestasi dengan lebih objektif dan
-            efisien.
+            SPK Digital Bank dikembangkan untuk membantu institusi perbankan
+            dalam proses evaluasi produk digital banking dengan lebih objektif
+            dan efisien.
           </Text>
           <Text className='text-center text-gray-500 text-xs'>
-            © 2024 SPK Simkatmawa. All rights reserved.
+            © 2024 SPK Digital Bank. All rights reserved.
           </Text>
         </View>
       </ScrollView>

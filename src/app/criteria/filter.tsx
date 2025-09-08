@@ -38,28 +38,28 @@ interface RadioButtonProps {
 const RadioButton = ({ selected, onPress, label }: RadioButtonProps) => (
   <Pressable
     className={`p-4 rounded-xl border-2 flex-row items-center gap-x-4 ${
-      selected ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
+      selected ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 bg-white'
     }`}
     onPress={onPress}
     style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
   >
     <View
       className={`w-6 h-6 rounded-full border-2 items-center justify-center ${
-        selected ? 'border-blue-500 bg-blue-500' : 'border-gray-300'
+        selected ? 'border-indigo-500 bg-indigo-500' : 'border-gray-300'
       }`}
     >
       {selected && <View className='w-3 h-3 rounded-full bg-white' />}
     </View>
     <Text
       className={`text-base font-medium ${
-        selected ? 'text-blue-700' : 'text-gray-700'
+        selected ? 'text-indigo-700' : 'text-gray-700'
       }`}
     >
       {label}
     </Text>
     {selected && (
       <View className='ml-auto'>
-        <AntDesign name='checkcircle' size={20} color='#3B82F6' />
+        <AntDesign name='checkcircle' size={20} color='#6366F1' />
       </View>
     )}
   </Pressable>
@@ -75,14 +75,14 @@ interface CheckboxProps {
 const Checkbox = ({ checked, onPress, label, icon }: CheckboxProps) => (
   <Pressable
     className={`p-4 rounded-xl border-2 flex-row items-center gap-x-4 ${
-      checked ? 'border-blue-500 bg-blue-50' : 'border-gray-200 bg-white'
+      checked ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 bg-white'
     }`}
     onPress={onPress}
     style={({ pressed }) => [{ opacity: pressed ? 0.8 : 1 }]}
   >
     <View
       className={`w-6 h-6 rounded border-2 items-center justify-center ${
-        checked ? 'border-blue-500 bg-blue-500' : 'border-gray-300'
+        checked ? 'border-indigo-500 bg-indigo-500' : 'border-gray-300'
       }`}
     >
       {checked && <AntDesign name='check' size={16} color='white' />}
@@ -91,11 +91,11 @@ const Checkbox = ({ checked, onPress, label, icon }: CheckboxProps) => (
       <AntDesign
         name={icon as any}
         size={20}
-        color={checked ? '#3B82F6' : '#6B7280'}
+        color={checked ? '#6366F1' : '#6B7280'}
       />
       <Text
         className={`text-base font-medium ${
-          checked ? 'text-blue-700' : 'text-gray-700'
+          checked ? 'text-indigo-700' : 'text-gray-700'
         }`}
       >
         {label}
@@ -103,7 +103,7 @@ const Checkbox = ({ checked, onPress, label, icon }: CheckboxProps) => (
     </View>
     {checked && (
       <View className='ml-auto'>
-        <AntDesign name='checkcircle' size={20} color='#3B82F6' />
+        <AntDesign name='checkcircle' size={20} color='#6366F1' />
       </View>
     )}
   </Pressable>
@@ -212,8 +212,8 @@ export default function FilterScreen() {
       {/* Sticky Bottom Button */}
       <View className='px-6 py-6 bg-white border-t border-gray-100'>
         <Pressable onPress={handleApplyFilters}>
-          <View className='bg-blue-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
-            <View className='bg-blue-400 p-2 rounded-full'>
+          <View className='bg-indigo-500 py-2 rounded-xl flex-row items-center justify-center gap-x-3 shadow-md'>
+            <View className='bg-indigo-400 p-2 rounded-full'>
               <AntDesign name='arrowright' size={15} color='white' />
             </View>
             <Text className='text-white font-semibold text-base'>

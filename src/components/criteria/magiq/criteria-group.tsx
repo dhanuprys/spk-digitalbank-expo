@@ -115,25 +115,25 @@ function CriteriaCard({
     <View
       className={`pr-1 rounded-xl flex-row gap-x-3 items-center border ${
         isActive
-          ? 'bg-blue-100 border-blue-300 shadow-md'
+          ? 'bg-indigo-100 border-indigo-300 shadow-md'
           : 'bg-white border-gray-200 shadow-sm'
       }`}
     >
       <Pressable
-        className={`p-4 rounded-lg ${isActive ? 'bg-blue-200' : 'bg-gray-50'}`}
+        className={`p-4 rounded-lg ${isActive ? 'bg-indigo-200' : 'bg-gray-50'}`}
         onPressIn={onDragStart}
         onPressOut={onDragEnd}
       >
         <MaterialCommunityIcons
           name='drag'
           size={20}
-          color={isActive ? '#1E40AF' : '#6B7280'}
+          color={isActive ? '#4338CA' : '#6B7280'}
         />
       </Pressable>
       <View className='flex-1 flex-row items-center justify-between gap-x-4'>
         <Text
           className={`flex-1 font-medium leading-5 mr-4 ${
-            isActive ? 'text-blue-900 text-base' : 'text-gray-800 text-base'
+            isActive ? 'text-indigo-900 text-base' : 'text-gray-800 text-base'
           }`}
           numberOfLines={2}
         >

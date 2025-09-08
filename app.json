@@ -27,18 +27,15 @@
         }
       ]
     ],
-    "name": "SPK Simkatmawa",
-    "slug": "spk-simkatmawa-expo",
+    "name": "SPK Digital Bank",
+    "slug": "spk-digitalbank-expo",
     "extra": {
       "router": {
         "origin": "https://n"
-      },
-      "eas": {
-        "projectId": "1ee27a87-c69d-4d18-b37d-3840f52821ea"
       }
     },
     "android": {
-      "package": "com.dhanuprys.spksimkatmawa"
+      "package": "com.dhanuprys.spkdigitalbank"
     }
   }
 }

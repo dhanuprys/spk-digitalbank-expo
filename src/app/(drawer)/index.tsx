@@ -1,5 +1,4 @@
 import useCriteriaStore from '@/states/criteria-store';
-import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import classNames from 'classnames';
@@ -21,38 +20,42 @@ export default function Page() {
         <View className='gap-y-4'>
           <CriteriaButton
             icon={() => (
-              <FontAwesome6
-                name='wand-magic-sparkles'
+              <MaterialCommunityIcons
+                name='calculator-variant'
                 size={24}
-                color='#8B5CF6'
+                color='#10B981'
               />
             )}
             type='magiq'
             title='MAGIQ'
             description='Metode matematika dengan perhitungan otomatis'
-            className='bg-purple-50 border border-purple-100'
+            className='bg-green-50 border border-green-200'
           />
           <CriteriaButton
             icon={() => (
               <MaterialCommunityIcons
-                name='video-input-component'
+                name='hand-pointing-up'
                 size={24}
-                color='#EF4444'
+                color='#8B5CF6'
               />
             )}
             type='manual'
             title='MANUAL'
             description='Metode manual dengan input nilai langsung'
-            className='bg-red-50 border border-red-100'
+            className='bg-purple-50 border border-purple-100'
           />
           <CriteriaButton
             icon={() => (
-              <MaterialCommunityIcons name='layers' size={24} color='#10B981' />
+              <MaterialCommunityIcons
+                name='file-document-multiple'
+                size={24}
+                color='#EF4444'
+              />
             )}
             type='template'
             title='TEMPLATE'
             description='Memilih dengan template yang sudah disediakan'
-            className='bg-green-50 border border-green-100'
+            className='bg-red-50 border border-red-100'
           />
         </View>
 
@@ -189,8 +192,8 @@ function LastRecommendations() {
             className='flex-row items-center justify-between py-1.5'
           >
             <View className='flex-row items-center gap-x-2 flex-1'>
-              <View className='w-6 h-6 bg-blue-100 rounded-full items-center justify-center'>
-                <Text className='text-sm font-bold text-blue-600'>
+              <View className='w-6 h-6 bg-indigo-100 rounded-full items-center justify-center'>
+                <Text className='text-sm font-bold text-indigo-600'>
                   {index + 1}
                 </Text>
               </View>
